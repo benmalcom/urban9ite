@@ -21,17 +21,13 @@ var sanitize = require('./api/middlewares/sanitize');
 
 
 var apiRoutes = require('./api/routes/index');
-var authRoutes = require('./main/routes/auth');
-var routes = require('./main/routes/all');
 
 
 var app = express();
-require('./main/others/passport')(passport); // pass passport for configuration
 
 
 // view engine setup
-app.engine('ejs', engine);
-app.set('views', path.join(__dirname, 'main/views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('port',process.env.PORT || config.get('app.port'));
 
