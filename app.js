@@ -15,11 +15,6 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var config = require('config');
 var _ = require('underscore');
-var engine = require('ejs-mate');
-var passport = require('passport');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var flash = require('express-flash');
 var formatResponse = require('./api/shared/format-response');
 var sanitize = require('./api/middlewares/sanitize');
 
@@ -48,32 +43,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-    store: new MongoStore({url : config.get('db.url') }),
-    secret: 'mytoddlr secret',
-    resave: true,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
-
 //Sanitize req.body, req.query, req.params
 app.use(sanitize);
 
 //Store session in local variable
 app.use(function(req, res, next) {
-  if(!_.isEmpty(req.session)) {
-    res.locals.user = req.session.user;
-    res.locals.errors = req.session.errors;
-  }
-  next();
+    console.log("Url ",req.originalUrl);;
+    next();
 });
 
-
-authRoutes(app,passport);
 apiRoutes(app);
-app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
