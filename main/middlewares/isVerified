@@ -1,0 +1,19 @@
+/**
+ * Created by Malcom on 10/31/2016.
+ */
+module.exports =  function (req,res,next){
+    if(req.user && req.user.account_verified) return next();
+    else if(req.user && !req.user.account_verified)
+    {
+        req.flash('danger', 'Your account has not been verified!');
+        res.redirect('/verify-account');
+    }
+    else
+    {
+        req.flash('danger', 'Please create an account!');
+        res.redirect('/register');
+    }
+
+};
+
+

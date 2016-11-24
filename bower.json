@@ -1,0 +1,22 @@
+{
+  "name": "mytoddlr_app",
+  "description": "",
+  "main": "",
+  "authors": [
+    "benmalcom <benjaminikeji@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/custom/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "intl-tel-input": "^9.2.4"
+  }
+}
