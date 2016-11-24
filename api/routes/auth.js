@@ -8,11 +8,12 @@ var apiVersion = ('v'+process.env.API_VERSION).toLowerCase();
 var AuthController = require('../controllers/'+apiVersion+ '/auth');
 var checkToken = require('../../api/middlewares/auth_token');
 
-router.post('/login', AuthController.login);
 
 //Middleware to check authorization token
 router.use(checkToken);
 router.post('/register', AuthController.startRegistration)
     .post('/verify-code', AuthController.verifyCode)
     .post('/change-password', AuthController.changePassword);
+router.post('/login', AuthController.login);
+
 module.exports = router;
