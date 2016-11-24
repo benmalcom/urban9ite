@@ -13,7 +13,7 @@ var checkToken = require('../../api/middlewares/auth_token');
 router.use(checkToken);
 router.post('/register', AuthController.startRegistration)
     .post('/verify-code', AuthController.verifyCode)
-    .post('/change-password', AuthController.changePassword);
-router.post('/login', AuthController.login);
+    .post('/change-password', AuthController.changePassword)
+    .post('/login', AuthController.login);
 
 module.exports = router;
